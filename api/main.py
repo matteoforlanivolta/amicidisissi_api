@@ -1,3 +1,7 @@
+# Progetto Amici Di Sissi
+# main.py
+# Codice per inizializzare ed avviare l'API
+
 from adslogging import ADSLogger
 from dbauth import DBAuth
 

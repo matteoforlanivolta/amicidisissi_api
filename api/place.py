@@ -1,3 +1,7 @@
+# Progetto Amici Di Sissi
+# place.py
+# Classe che rappresenta un luogo che puo' essere visitato
+
 from location import Location
 
 class Place:
