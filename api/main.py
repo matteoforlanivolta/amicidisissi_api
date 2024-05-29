@@ -4,6 +4,7 @@
 
 from adslogging import ADSLogger
 from dbauth import DBAuth
+from webapi import WebAPI
 
 # remove me!!!
 import hashlib
