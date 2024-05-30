@@ -24,17 +24,13 @@ class WebAPI:
                 return jsonify(response)
 
             dbplaces = DBAccess.getallplaces()
-            places: list[Place] = []
+            places: list[dict[str, any]] = []
 
             for i in dbplaces:
-                lat = float(str(i[2]))
-                lng = float(str(i[3]))
-                iplace = Place(i[1], Location(lat, lng), i[4], i[5])
-                ADSLogger.log(f"{iplace.name}, {iplace.loc.latitude}, {iplace.loc.longitude}, {iplace.rating}, {iplace.imgurl}")
-                places.append(iplace)
+                iplace = Place(i)
+                places.append(iplace.to_dictionary())
 
-
-            return jsonify({'ok': 'ok'})
+            return jsonify(places)
 
         @app.route("/api/getplace", methods=['POST'])
         def getplace():
@@ -45,11 +41,14 @@ class WebAPI:
                 response = {'failed': 'key is wrong.'}
                 return jsonify(response)
 
-            id = json['id']
-            DBAccess.getplace(id)
+            name = json['name']
 
-            response = {'id': id}
-            return jsonify(response)
+            dbplace = DBAccess.getplace(name)
+            iplace = Place(dbplace)
+            
+            place = iplace.to_dictionary()
+
+            return jsonify(place)
             
         
         @app.route("/api/writeplace", methods=['POST'])

@@ -32,10 +32,10 @@ class DBAccess:
             ADSLogger.error("Connection to database attempted, but it's closed!")
 
     @staticmethod
-    def getplace(id: str):
+    def getplace(name: str):
         if DBAccess.is_open:
-            DBAccess.cursor.execute(f"SELECT * FROM places WHERE id='{id}';")
-            ADSLogger.log(f"Queried place with ID {id}")
+            DBAccess.cursor.execute(f"SELECT * FROM places WHERE name='{name}';")
+            ADSLogger.log(f"Queried place {name}")
             return DBAccess.cursor.fetchone()
         else:
             ADSLogger.error("Connection to database attempted, but it's closed!")
