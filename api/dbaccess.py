@@ -11,6 +11,9 @@ class DBAccess:
     cursor = None
     is_open = False
 
+    # Apre la connessione al database.
+    # I parametri sono quelli necessari per l'accesso ad un database postgresql
+    # (Nome database, nome utente, password database, host del database)
     @staticmethod
     def open(dbname: str, user: str, password: str, host: str):
         ADSLogger.log(f"Opening DB connection to {host}")
@@ -18,6 +21,8 @@ class DBAccess:
         DBAccess.cursor = DBAccess.connection.cursor()
         DBAccess.is_open = True
 
+    # Scrittura di una entry in un database.
+    # Probabilmente non verra' esposto come API
     @staticmethod
     def writeplace(newplace: Place):
         if DBAccess.is_open:
@@ -31,6 +36,8 @@ class DBAccess:
         else:
             ADSLogger.error("Connection to database attempted, but it's closed!")
 
+    # Query di una entry del database
+    # Ritorna una tuple di valori (nome, lat., long., accessibilita', link immagine)
     @staticmethod
     def getplace(name: str):
         if DBAccess.is_open:
@@ -39,7 +46,9 @@ class DBAccess:
             return DBAccess.cursor.fetchone()
         else:
             ADSLogger.error("Connection to database attempted, but it's closed!")
+            return None
 
+    # Query di tutte le entry del database
     @staticmethod
     def getallplaces():
         if DBAccess.is_open:
@@ -49,8 +58,9 @@ class DBAccess:
         else:
             ADSLogger.error("Connection to database attempted, but it's closed!")
 
+    # Chiude la connessione al database
     @staticmethod
     def close():
-        ADSLogger.log("Closing DB connection")
+        ADSLogger.log("Closing DB connection!")
         DBAccess.connection.close()
         DBAccess.is_open = False

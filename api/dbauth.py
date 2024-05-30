@@ -27,7 +27,7 @@ class DBAuth:
         # Calcolo l'hash SHA256 della chiave
         env_passwd_hash = hashlib.sha256(env_passwd.encode('utf-8')).hexdigest()
 
-        ADSLogger.error("REMOVE ME!!! NO PROD!!!! " + passwd + " ?= " + env_passwd_hash)
+        # ADSLogger.error("REMOVE ME!!! NO PROD!!!! " + passwd + " ?= " + env_passwd_hash)
 
         # Se l'hash passato e l'hash della chiave sono uguali, l'autenticazione e' riuscita
         if passwd == env_passwd_hash:

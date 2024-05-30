@@ -20,6 +20,8 @@ class Place:
             self.rating = int(dbquery[4])
             self.imgurl = dbquery[5]
             self.id = uuid4().hex
+        else:
+            self.id = None
 
     def to_dictionary(self):
         return {'name': self.name, 'loc': [self.loc.latitude, self.loc.longitude], 'rating': self.rating, 'imgurl': self.imgurl}
