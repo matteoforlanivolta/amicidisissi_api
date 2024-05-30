@@ -68,4 +68,4 @@ class WebAPI:
 
             return jsonify({'success': 'commited to db'})
 
-        app.run()
+        app.run(host="0.0.0.0", port=5001)
