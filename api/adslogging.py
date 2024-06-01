@@ -18,6 +18,7 @@ class ADSLogger:
     @staticmethod
     def open():
         colorama.init()
+        # Trovo il percorso della Home
         home_dir = os.path.expanduser("~")
         ADSLogger.file_handle = open(os.path.join(home_dir, "ads.log"), 'a+')
         ADSLogger.is_open = True

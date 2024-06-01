@@ -21,21 +21,6 @@ class DBAccess:
         DBAccess.cursor = DBAccess.connection.cursor()
         DBAccess.is_open = True
 
-    # Scrittura di una entry in un database.
-    # Probabilmente non verra' esposto come API
-    #@staticmethod
-    #def writeplace(newplace: Place):
-    #    if DBAccess.is_open:
-    #        query = f"INSERT INTO places (name, lat, lng, rating, imgurl) VALUES ('{newplace.name}', {newplace.loc.latitude}, {newplace.loc.longitude}, {newplace.rating}, '{newplace.imgurl}');"
-    #        ADSLogger.log(f"Sending Query: {query}")
-    #
-    #        DBAccess.cursor.execute(query)
-    #        DBAccess.connection.commit()
-    #
-    #        ADSLogger.log(f"Wrote place with ID {newplace.id}")
-    #    else:
-    #        ADSLogger.error("Connection to database attempted, but it's closed!")
-
     # Query di una entry del database
     # Ritorna una tuple di valori (nome, lat., long., accessibilita', link immagine)
     @staticmethod
