@@ -83,21 +83,21 @@ class WebAPI:
         # imgurl: URL dell'immagine del posto
         # 
         # Forse e' meglio non esporre questa API al pubblico :P
-        @app.route("/api/writeplace", methods=['POST'])
-        def writeplace():
-            json = request.get_json()
-            key = json['key']
-
-            if not DBAuth.validate(key):
-                return jsonify({'failed': 'key is wrong.'})
+        # @app.route("/api/writeplace", methods=['POST'])
+        #def writeplace():
+        #    json = request.get_json()
+        #    key = json['key']
+        #
+        #    if not DBAuth.validate(key):
+        #        return jsonify({'failed': 'key is wrong.'})
             
-            ADSLogger.log(json)
+        #    ADSLogger.log(json)
 
-            loc = Location(json['loc'][0], json['loc'][1])
-            newplace = Place(json['name'], loc, json['rating'], json['imgurl'])
+        #    loc = Location(json['loc'][0], json['loc'][1])
+        #    newplace = Place(json['name'], loc, json['rating'], json['imgurl'])
 
-            DBAccess.writeplace(newplace)
+        #    DBAccess.writeplace(newplace)
 
-            return jsonify({'success': 'commited to db'})
+        #    return jsonify({'success': 'commited to db'})
 
         app.run(host="0.0.0.0", port=port)

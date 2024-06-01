@@ -20,7 +20,7 @@ class DBAuth:
         env_passwd = os.getenv("ADS_PASSWD")
 
         # Controllo che la chiave sia configurata
-        if env_passwd == None:
+        if env_passwd == None or not env_passwd:
             ADSLogger.error("Hash validation failed, did you set $ADS_PASSWD?")
             return False
 
