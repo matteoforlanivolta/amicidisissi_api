@@ -25,6 +25,8 @@ class WebAPI:
         # key: Hash SHA256 della chiave. Validata usando la classe DBAuth
         @app.route("/api/getplaces", methods=['POST'])
         def getplaces():
+            ADSLogger.log(f"Request from: {request.host_url}")
+
             json = request.get_json()
             key = json['key']
 
